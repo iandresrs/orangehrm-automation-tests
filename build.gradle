@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-single-page-report:4.2.0"
+        classpath "net.serenity-bdd:serenity-gradle-plugin:4.1.3"
+    }
+}
+
+// Aplica el plugin de serenity para gradle
+plugins {
+    id "net.serenity-bdd.serenity-gradle-plugin" version "4.1.3"
+    id 'java'
+}
+
+//Define el grupo y la version del proyecto
+group 'com.orangenhrm'
+version '1.0-SNAPSHOT'
+
+// Configura la codificación para la compilación de código Java
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+// Establece la versión de compatibilidad de Java para el código fuente y el bytecode
+sourceCompatibility = 11
+targetCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Dependencias de Serenity
+    implementation 'net.serenity-bdd:serenity-junit5:3.3.2'
+    implementation 'net.serenity-bdd:serenity-cucumber:3.7.1'
+    implementation 'net.serenity-bdd:serenity-core:3.7.1'
+
+    // Dependencias de Apache POI
+    implementation 'org.apache.poi:poi:5.3.0'
+    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+
+    // Dependencias SLF4J
+    implementation 'org.slf4j:slf4j-simple:2.0.13'
+    implementation 'org.apache.logging.log4j:log4j-core:2.23.1'
+}
+
+// Configuración para usar JUnit Platform
+test {
+    useJUnitPlatform()
+}
+
+serenity {
+    // Especifica el paquete raíz donde se encuentran los runners
+    testRoot = "com.oreangehrm.runners"
+
+    // Directorio base de los requerimientos (features)
+    requirementsBaseDir = ["src/test/resources/features/"]
+
+    // Tipo de reportes que se generarán
+    reports = ["single-page-html"]
+}
+
+// Configuración para continuar las pruebas en caso de fallos
+gradle.startParameter.continueOnFailure = true
+
+// Tareas predeterminadas
+defaultTasks 'clean', 'test', 'aggregate'
+
+// Asegura que la tarea 'aggregate' se ejecute después de 'test'
+test.finalizedBy(aggregate)
