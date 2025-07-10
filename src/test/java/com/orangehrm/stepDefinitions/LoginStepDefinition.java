@@ -26,7 +26,7 @@ public class LoginStepDefinition {
 
   @When("the user enter their credentials and click the submit button")
   public void theUserEnterTheirCredentialsAndClickTheSubmitButton() {
-    OnStage.theActorInTheSpotlight().attemptsTo(LoginTask.withCredentials("Admin", "admin12"));
+    OnStage.theActorInTheSpotlight().attemptsTo(LoginTask.withCredentials("Admin", "admin123"));
   }
 
   @Then("the user see the validation message")

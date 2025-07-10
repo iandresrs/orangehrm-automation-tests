@@ -12,4 +12,8 @@ public class ErrorMessage {
     // ADD CANDIDATE
     public static final String CANDIDATE_FORM_INTERACTION_ERROR = "Failed to interact with one or more elements while filling out the candidate form.";
     public static final String CANDIDATE_SUCCESS_MESSAGE_NOT_DISPLAYED = "The success confirmation message was not displayed after saving the candidate";
+
+    // Interviewer
+    public static final String ERROR_SCHEDULING_INTERVIEW_MESSAGE = "Error scheduling interview with interviewer '%s', title '%s', date '%s' and time '%s'";
+    public static final String ERROR_STATUS_CANDIDATE = "The candidate does not appear with status 'Hired' in the found records section.";
 }
